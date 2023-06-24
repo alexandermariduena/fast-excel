@@ -10,6 +10,7 @@ use OpenSpout\Reader\SheetInterface;
  * Trait Importable.
  *
  * @property int  $start_row
+ * @property ?int  $end_row
  * @property bool $transpose
  * @property bool $with_header
  */
@@ -168,6 +169,10 @@ trait Importable
                 } else {
                     $collection[] = empty($headers) ? $row : array_combine($headers, $row);
                 }
+            }
+
+            if ($this->end_row && $k > $this->end_row) {
+                break;
             }
         }
 

@@ -40,6 +40,11 @@ class FastExcel
     private $start_row = 1;
 
     /**
+    * @var ?int
+    */
+    private $end_row = null;
+
+    /**
      * @var bool
      */
     private $transpose = false;
@@ -136,6 +141,16 @@ class FastExcel
     public function transpose()
     {
         $this->transpose = true;
+
+        return $this;
+    }
+
+     /**
+     * @return $this
+     */
+    public function limitRows(int $row = null)
+    {
+        $this->end_row = $row;
 
         return $this;
     }
